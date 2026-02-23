@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Navbar from './components/Navbar';
-import { Metaplex,  } from "@metaplex-foundation/js";
+import { Metaplex, } from "@metaplex-foundation/js";
 import { Circle, Send } from 'lucide-react';
 import axios from 'axios';
 import { motion } from "framer-motion"
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Connection, LAMPORTS_PER_SOL, PublicKey,  SystemProgram, Transaction } from '@solana/web3.js';
+import { Connection, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
 const connection = new Connection('https://api.testnet.solana.com', 'confirmed');
 const metaplex = Metaplex.make(connection);
 const exampleCommands = [
@@ -28,7 +28,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
   async function fetchNFTCount(publicKey: PublicKey): Promise<number> {
     // Fetch NFTs owned by the wallet address
-    const nfts = await metaplex.nfts().findAllByOwner({owner:publicKey});
+    const nfts = await metaplex.nfts().findAllByOwner({ owner: publicKey });
     return nfts.length;
   }
   const hanldeSubmit = async () => {
@@ -269,7 +269,7 @@ export default function HomePage() {
           className="fixed bottom-4 w-full flex flex-col items-center z-50"
         >
 
-            <div className="w-96 h-30 bg-radial from-green-600 via-green-600 shadow-2xl to-blue-500 rounded-full right-1/2 -top-36 translate-y-1/2 transform translate-x-1/2 blur-[100px] -z-10 absolute"></div>
+          <div className="w-96 h-30 bg-radial from-green-600 via-green-600 shadow-2xl to-blue-500 rounded-full right-1/2 -top-36 translate-y-1/2 transform translate-x-1/2 blur-[100px] -z-10 absolute"></div>
 
 
           <div
