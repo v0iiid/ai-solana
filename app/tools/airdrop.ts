@@ -5,14 +5,13 @@ const airdropSchema = z.object({
   amount: z.number().positive().max(5),
 });
 
-export const airdropTool = {
+export const airdropTool: ToolSchema = {
   name: "airdrop",
   description: "Airdrop SOL to the connected wallet (devnet only)",
   parameters: {
     type: "object",
     properties: {
-      type: "number",
-      description: "Amount of SOL to airdrop (max 5)",
+      amount: { type: "number", description: "Amount of SOL to airdrop (max 5)" },
     },
     required: ["amount"],
   },
