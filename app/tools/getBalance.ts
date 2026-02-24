@@ -1,6 +1,6 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 
-export const getBalanceTool = {
+export const getBalanceTool:ToolSchema = {
   name: "get_balance",
   description: "Get the SOL balance of the connected wallet",
   parameters: {

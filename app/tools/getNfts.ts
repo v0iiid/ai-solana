@@ -1,7 +1,7 @@
 import { Metadata, Metaplex } from "@metaplex-foundation/js";
 import { Connection, PublicKey } from "@solana/web3.js";
 
-export const getNFTsTool = {
+export const getNFTsTool:ToolSchema = {
   name: "get_nfts",
   description: "Get all NFTs of the connected wallet",
   parameters: {
