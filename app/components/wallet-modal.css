@@ -1,0 +1,71 @@
+/* ==============================
+Wallet Button (small, #3673FC, dark inner shadow, blurred, no hover color change)
+============================== */
+.wallet-adapter-button {
+  background: rgba(54, 115, 252, 0.85);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  /* small font */
+  border-radius: 2.75rem;
+  /* small radius */
+  padding: 0.1rem 1.2rem;
+  /* small padding */
+  backdrop-filter: blur(12px);
+  /* frosted glass effect */
+
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+  /* dark inner shadow */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.7);
+  /* dark inner shadow */
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.5);
+  /* dark inner shadow */
+  transition: all 0.2s ease-in-out;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background: rgba(54, 115, 252, 0.85);
+  transform: scale(1.05);
+}
+
+.wallet-adapter-button:hover {
+  /* Keep same color on hover */
+  background: rgba(54, 115, 252, 0.85);
+  transform: scale(1.05);
+  /* optional scale for hover effect */
+}
+
+/* ==============================
+Modal wrapper background (blurred)
+============================== */
+.wallet-adapter-modal-wrapper {
+  background-color: rgba(28, 28, 28, 0.8);
+  /* semi-transparent dark */
+  backdrop-filter: blur(20px);
+  /* frosted glass effect */
+  border-radius: 1rem;
+
+}
+.wallet-adapter-modal-wrapper:hover{
+
+  transform: scale(1.0);
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: none;
+  box-shadow: none;
+
+}
+/* ==============================
+Modal wallet list buttons (small, dark inner shadow, blur)
+============================== */
+
+
+.wallet-adapter-modal-wrapper .wallet-adapter-button:hover {
+  background: rgba(54, 115, 252, 0.1);
+  /* same color, no hover color change */
+
+   transform: scale(1.0);
+  /* slight scale on hover */
+}

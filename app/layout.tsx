@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} bg-[#0F0F0F] ` }
+        className={`${roboto.className} bg-[#262624] ` }
       >
         <WalletContextProvider>{children}</WalletContextProvider>
       </body>

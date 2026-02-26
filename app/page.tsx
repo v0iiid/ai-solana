@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import { Metaplex, } from "@metaplex-foundation/js";
 import { Circle, Send } from 'lucide-react';
@@ -226,9 +226,16 @@ export default function HomePage() {
       console.error('Failed to parse JSON:', err);
     }
   }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      document.body.style.transform = 'scale(1)';
+      setTimeout(() => document.body.style.transform = '', 0);
+    }, 1000 * 30); // every 30s
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <Background>
+
       <div className="h-screen  flex flex-col text-[#ffffffe9] ">
         <Navbar />
         {/* Chat area */}
@@ -318,7 +325,7 @@ export default function HomePage() {
           }
         </motion.div>
       </div>
-    </Background>
+
   );
 }
 
@@ -334,11 +341,9 @@ function Item({ text, onClick }: { text: string, onClick: (text: string) => void
 
 function Background({ children }: { children: ReactNode }) {
   return (<div className="relative min-h-screen overflow-hidden">
-    <div className='w-[1512px] h-[990px] top-0 absolute bg-[rgba(15, 15, 15, 0.1)]  backdrop-blur-[90px] z-0 ' />
-        <div className='w-[2000px] h-[443px] top-[100]  overflow-hidden absolute -z-10 blur-[10px] bg-[#0F0F0F] ' />
-    <div className='w-[1801px] overflow-hidden h-[296px] blur-[80px] -z-20 absolute top-0 bg-[conic-gradient(from_190deg_at_40%_80%,#0019FF_0%,#00FF26_51.44%,#0019FF_100%)]' />
-
-    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.12] mix-blend-overlay pointer-events-none" />
+    <div className="absolute w-screen h-[300px]  -top-10 bg-[url('/noise.png')] z-10 opacity-60 mix-blend-overlay pointer-events-none" />
+    <div className="bg-[url('/bgFrame.png')] bg-cover w-screen absolute -top-20 z-0 h-full " />
+    {/* <div className='bg-[#0F0F0F] w-screen h-[400px] absolute top-[200px] blur-3xl'></div> */}
     <div className="relative z-10">
       {children}
     </div>
