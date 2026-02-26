@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Navbar from './components/Navbar';
 import { Metaplex, } from "@metaplex-foundation/js";
 import { Circle, Send } from 'lucide-react';
@@ -228,52 +228,55 @@ export default function HomePage() {
   }
 
   return (
-    <div className="h-screen  flex flex-col text-[#ffffffe9] ">
-      <Navbar />
-      {/* Chat area */}
-      {view == 'chat' && (
-        <div className='w-2xl mx-auto pb-20'>
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`flex w-full   ${msg.role === 'user' ? 'justify-end mt-4 mb-6' : 'mt-1'}`}>
-              <div className={`rounded-2xl flex  ${msg.role === 'user' ? 'bg-zinc-700  py-3 px-4' : 'bg-transparent text-white/90 px-4'}`}>
-                <p>{msg.text}</p>
-                {/* {(isLoading && msg.role == 'system') && (
+    <Background>
+      <div className="h-screen  flex flex-col text-[#ffffffe9] ">
+        <Navbar />
+        {/* Chat area */}
+        {view == 'chat' && (
+          <div className='w-2xl mx-auto pb-20'>
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex w-full   ${msg.role === 'user' ? 'justify-end mt-4 mb-6' : 'mt-1'}`}>
+                <div className={`rounded-2xl flex  ${msg.role === 'user' ? 'bg-zinc-700  py-3 px-4' : 'bg-transparent text-white/90 px-4'}`}>
+                  <p>{msg.text}</p>
+                  {/* {(isLoading && msg.role == 'system') && (
                   <div className="flex mt-4 text-white/60 italic animate-pulse">
                     <p>Typing...</p>
                   </div>
                 )} */}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-        </div>
-      )}
-      {view === 'landing' && (
-        <div className='mt-40 text-left flex justify-center flex-col items-center'>
-          <h1 style={{ wordSpacing: '0.1em', letterSpacing: '0.06em' }} className='text-4xl font-[600]'>Chat With Solana Blockchain</h1>
-          <p className='text-sm pt-2 text-[#ffffff82]'>A tool that help you perform task and talk to blockchain using message.</p>
-        </div>
-      )}
-      {/* Input area */}
-      <motion.div
-        className='  w-full  flex mt-8  flex-col items-center'>
-        {view === 'landing' && (
-          <div className='w-96 h-30 bg-radial from-green-600 via-green-600 shadow-2xl to-blue-500  rounded-full  right-1/2 -top-36 translate-y-1/2 transform translate-x-1/2 blur-[100px] -z-10 absolute '></div>
+          </div>
         )}
+        {view === 'landing' && (
+          <div className='mt-40 text-left flex justify-center flex-col items-center'>
+            <h1 style={{ wordSpacing: '0.1em', letterSpacing: '0.06em' }} className='text-4xl font-[600]'>Chat With Solana Blockchain</h1>
+            <p className='text-sm pt-2 text-[#ffffff82]'>A tool that help you perform task and talk to blockchain using message.</p>
+          </div>
+        )}
+        {/* Input area */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="fixed bottom-4 w-full flex flex-col items-center z-50"
-        >
-
-          <div className="w-96 h-30 bg-radial from-green-600 via-green-600 shadow-2xl to-blue-500 rounded-full right-1/2 -top-36 translate-y-1/2 transform translate-x-1/2 blur-[100px] -z-10 absolute"></div>
-
-
-          <div
-            className="
+          className='  w-full  flex mt-8  flex-col items-center'>
+          {/* {view === 'landing' && (
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <img
+                src="/a.svg"
+                className="w-full h-full object-cover"
+                alt="background"
+              />
+            </div>
+          )} */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="fixed bottom-4 w-full flex flex-col items-center z-50"
+          >
+            <div
+              className="
       p-1 flex gap-3
       shadow-[0_10px_30px_rgba(0,0,0,0.6)]
       border border-zinc-600
@@ -283,38 +286,39 @@ export default function HomePage() {
       ring-1 ring-white/10
       backdrop-blur-sm
     "
-          >
-            <input
-              type="text"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Ask something like 'Send 1 SOL to ...'"
-              className="flex-1 px-6 py-4 rounded-xl text-white text-sm placeholder-zinc-400 focus:outline-none bg-transparent"
-            />
-            <button
-              type="submit"
-              onClick={hanldeSubmit}
-              className="bg-gradient-to-r from-green-300 to-green-800 hover:from-green-400 hover:border-green-400 border-green-100 px-2 py-2 mr-[6px] rounded-full text-white cursor-pointer"
             >
-              {isLoading ? <Circle className="text-white/70" /> : <Send className="text-white/70" />}
-            </button>
-          </div>
-        </motion.div>
-        {
-          view === 'landing' && (
-            <div className='flex items-center justify-center mt-4 gap-3 flex-wrap max-w-md mx-auto '>
-              {exampleCommands.map((command, index) => {
-                return (
-                  <div key={index}>
-                    <Item text={command} onClick={() => setPrompt(command)} />
-                  </div>
-                )
-              })}
+              <input
+                type="text"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Ask something like 'Send 1 SOL to ...'"
+                className="flex-1 px-6 py-4 rounded-xl text-white text-sm placeholder-zinc-400 focus:outline-none bg-transparent"
+              />
+              <button
+                type="submit"
+                onClick={hanldeSubmit}
+                className="bg-gradient-to-r from-green-300 to-green-800 hover:from-green-400 hover:border-green-400 border-green-100 px-2 py-2 mr-[6px] rounded-full text-white cursor-pointer"
+              >
+                {isLoading ? <Circle className="text-white/70" /> : <Send className="text-white/70" />}
+              </button>
             </div>
-          )
-        }
-      </motion.div>
-    </div>
+          </motion.div>
+          {
+            view === 'landing' && (
+              <div className='flex items-center justify-center mt-4 gap-3 flex-wrap max-w-md mx-auto '>
+                {exampleCommands.map((command, index) => {
+                  return (
+                    <div key={index}>
+                      <Item text={command} onClick={() => setPrompt(command)} />
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          }
+        </motion.div>
+      </div>
+    </Background>
   );
 }
 
@@ -326,4 +330,17 @@ function Item({ text, onClick }: { text: string, onClick: (text: string) => void
       className='text-xs text-center cursor-pointer  bg-green-800/30 text-green-500 w-fit rounded-full px-2 py-1 border-green-400 border-1 items-center flex justify-center'
     >{text}</div>
   )
+}
+
+function Background({ children }: { children: ReactNode }) {
+  return (<div className="relative min-h-screen overflow-hidden">
+    <div className='w-[1512px] h-[990px] top-0 absolute bg-[rgba(15, 15, 15, 0.1)]  backdrop-blur-[90px] z-0 ' />
+        <div className='w-[2000px] h-[443px] top-[100]  overflow-hidden absolute -z-10 blur-[10px] bg-[#0F0F0F] ' />
+    <div className='w-[1801px] overflow-hidden h-[296px] blur-[80px] -z-20 absolute top-0 bg-[conic-gradient(from_190deg_at_40%_80%,#0019FF_0%,#00FF26_51.44%,#0019FF_100%)]' />
+
+    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.12] mix-blend-overlay pointer-events-none" />
+    <div className="relative z-10">
+      {children}
+    </div>
+  </div>)
 }
